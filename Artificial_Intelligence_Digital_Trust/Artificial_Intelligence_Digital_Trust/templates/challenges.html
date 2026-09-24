@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}AI Challenges | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="page-hero reveal">
+  <span class="tag">Risks</span>
+  <h1>AI Challenges</h1>
+  <p>Understanding the risks that must be managed for AI to remain trustworthy.</p>
+</section>
+
+<section class="section reveal">
+  <div class="cards-grid">
+    <div class="challenge-card reveal">
+      <div class="challenge-icon"><i class="fa-solid fa-masks-theater"></i></div>
+      <h3>Deepfakes</h3>
+      <p>AI-generated synthetic media that convincingly mimics real people's voices and faces, posing serious risks for misinformation and fraud.</p>
+    </div>
+    <div class="challenge-card reveal">
+      <div class="challenge-icon"><i class="fa-solid fa-scale-unbalanced"></i></div>
+      <h3>Bias in AI</h3>
+      <p>Models trained on skewed or unrepresentative data can produce unfair or discriminatory outcomes against certain groups.</p>
+    </div>
+    <div class="challenge-card reveal">
+      <div class="challenge-icon"><i class="fa-solid fa-user-secret"></i></div>
+      <h3>Privacy Issues</h3>
+      <p>Large-scale data collection required to train AI models raises serious concerns about consent and personal privacy.</p>
+    </div>
+    <div class="challenge-card reveal">
+      <div class="challenge-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <h3>Misinformation</h3>
+      <p>Generative AI can be used to rapidly produce and spread false or misleading information at scale.</p>
+    </div>
+    <div class="challenge-card reveal">
+      <div class="challenge-icon"><i class="fa-solid fa-bug"></i></div>
+      <h3>Security Risks</h3>
+      <p>AI systems themselves can be targeted through adversarial attacks, data poisoning, or model theft.</p>
+    </div>
+    <div class="challenge-card reveal">
+      <div class="challenge-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <h3>Job Automation</h3>
+      <p>Automation of routine cognitive and physical tasks raises concerns about workforce displacement.</p>
+    </div>
+    <div class="challenge-card reveal">
+      <div class="challenge-icon"><i class="fa-solid fa-database"></i></div>
+      <h3>Data Leakage</h3>
+      <p>Sensitive data used in training or inference can unintentionally be exposed or memorized by AI models.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg reveal">
+  <div class="cta-box small">
+    <h2>Every challenge has a response.</h2>
+    <p>See how researchers and organizations are addressing these exact risks.</p>
+    <a href="{{ url_for('solutions') }}" class="btn btn-primary">View AI Solutions <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+{% endblock %}

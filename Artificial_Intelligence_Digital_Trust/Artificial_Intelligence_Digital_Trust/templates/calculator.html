@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Trust Calculator | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="page-hero reveal">
+  <span class="tag">Interactive Tool</span>
+  <h1>AI Trust Calculator</h1>
+  <p>Answer a few quick questions to measure your personal digital trust score.</p>
+</section>
+
+<section class="section reveal">
+  <div class="calculator-layout">
+    <form class="glass-card calc-form" method="POST" action="{{ url_for('calculator') }}">
+      <div class="form-group">
+        <label for="name"><i class="fa-solid fa-user"></i> Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="calc-question">
+        <p><i class="fa-solid fa-key"></i> Do you use a strong, unique password for important accounts?</p>
+        <div class="toggle-options">
+          <label><input type="radio" name="strong_password" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="strong_password" value="no"><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="calc-question">
+        <p><i class="fa-solid fa-mobile-screen-button"></i> Is Multi-Factor Authentication (MFA) enabled on your key accounts?</p>
+        <div class="toggle-options">
+          <label><input type="radio" name="mfa_enabled" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="mfa_enabled" value="no"><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="calc-question">
+        <p><i class="fa-solid fa-cloud-arrow-up"></i> Do you regularly back up important data?</p>
+        <div class="toggle-options">
+          <label><input type="radio" name="data_backup" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="data_backup" value="no"><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="calc-question">
+        <p><i class="fa-solid fa-eye"></i> Are you aware of and manage app/website privacy settings?</p>
+        <div class="toggle-options">
+          <label><input type="radio" name="privacy_awareness" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="privacy_awareness" value="no"><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="calc-question">
+        <p><i class="fa-solid fa-wifi"></i> Do you avoid unsecured public Wi-Fi for sensitive tasks?</p>
+        <div class="toggle-options">
+          <label><input type="radio" name="secure_browsing" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="secure_browsing" value="no"><span>No</span></label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-calculator"></i> Calculate My Trust Score</button>
+    </form>
+
+    <div class="calc-result-panel">
+      {% if result %}
+      <div class="glass-card calc-result reveal">
+        <h3>{{ result.name }}'s Digital Trust Score</h3>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: {{ result.score }}%;"></div>
+          </div>
+          <span class="progress-bar-label">{{ result.score }} / 100</span>
+        </div>
+        <span class="trust-level-badge level-{{ result.level|replace(' ', '-')|lower }}">{{ result.level }}</span>
+
+        <h4>Recommendations</h4>
+        <ul class="recommend-list">
+          {% for rec in result.recommendations %}
+          <li><i class="fa-solid fa-circle-check"></i> {{ rec }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <div class="glass-card calc-placeholder">
+        <i class="fa-solid fa-gauge-high"></i>
+        <p>Your Digital Trust Score and personalized recommendations will appear here once you submit the form.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

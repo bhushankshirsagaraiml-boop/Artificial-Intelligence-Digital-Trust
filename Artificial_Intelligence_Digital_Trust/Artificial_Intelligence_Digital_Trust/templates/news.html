@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}AI News | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="page-hero reveal">
+  <span class="tag">Stay Updated</span>
+  <h1>AI News</h1>
+  <p>Curated highlights on AI innovation, ethics, and digital trust.</p>
+</section>
+
+<section class="section reveal">
+  <div class="news-grid">
+    {% for item in news_items %}
+    <div class="news-card reveal">
+      <div class="news-card-icon"><i class="{{ item.icon }}"></i></div>
+      <span class="news-category">{{ item.category }}</span>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.summary }}</p>
+      <span class="news-date"><i class="fa-solid fa-calendar"></i> {{ item.date }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

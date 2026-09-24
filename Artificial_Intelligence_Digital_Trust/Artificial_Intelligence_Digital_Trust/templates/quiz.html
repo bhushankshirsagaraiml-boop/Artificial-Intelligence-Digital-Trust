@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}AI Quiz | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="page-hero reveal">
+  <span class="tag">Test Yourself</span>
+  <h1>AI Quiz</h1>
+  <p>10 questions to test your knowledge of Artificial Intelligence & Digital Trust.</p>
+</section>
+
+<section class="section reveal">
+  <form class="quiz-form glass-card" method="POST" action="{{ url_for('quiz') }}" id="quizForm">
+
+    <div class="form-group">
+      <label for="name"><i class="fa-solid fa-user"></i> Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    </div>
+
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="quizProgressBar"></div>
+    </div>
+
+    {% for question in questions %}
+    <div class="quiz-question reveal">
+      <h3><span class="q-number">Q{{ loop.index }}.</span> {{ question.q }}</h3>
+      <div class="quiz-options">
+        {% for option in question.options %}
+        <label class="quiz-option">
+          <input type="radio" name="q{{ loop.index0 }}" value="{{ loop.index0 }}" required>
+          <span>{{ option }}</span>
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-paper-plane"></i> Submit Quiz</button>
+  </form>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Update progress bar as radio buttons are selected
+  const form = document.getElementById('quizForm');
+  const bar = document.getElementById('quizProgressBar');
+  const totalQuestions = {{ questions|length }};
+
+  function updateProgress() {
+    const answered = new Set();
+    form.querySelectorAll('input[type=radio]:checked').forEach(el => answered.add(el.name));
+    const pct = (answered.size / totalQuestions) * 100;
+    bar.style.width = pct + '%';
+  }
+  form.addEventListener('change', updateProgress);
+</script>
+{% endblock %}

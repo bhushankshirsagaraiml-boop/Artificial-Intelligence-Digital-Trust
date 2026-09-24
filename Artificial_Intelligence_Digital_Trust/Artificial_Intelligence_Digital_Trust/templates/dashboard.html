@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="section dashboard-section reveal">
+  <div class="dashboard-header">
+    <div>
+      <span class="tag">Admin Panel</span>
+      <h1>Dashboard</h1>
+      <p>Logged in as <strong>{{ session.admin_username }}</strong></p>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn btn-outline"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </div>
+
+  <div class="stats-grid dashboard-stats">
+    <div class="stat-card"><i class="fa-solid fa-envelope"></i><h3>{{ stats.total_contacts }}</h3><p>Contact Submissions</p></div>
+    <div class="stat-card"><i class="fa-solid fa-circle-question"></i><h3>{{ stats.total_quiz }}</h3><p>Quiz Attempts</p></div>
+    <div class="stat-card"><i class="fa-solid fa-gauge-high"></i><h3>{{ stats.total_trust }}</h3><p>Trust Calculations</p></div>
+    <div class="stat-card"><i class="fa-solid fa-percent"></i><h3>{{ stats.avg_quiz }}%</h3><p>Avg. Quiz Score</p></div>
+    <div class="stat-card"><i class="fa-solid fa-shield-halved"></i><h3>{{ stats.avg_trust }}</h3><p>Avg. Trust Score</p></div>
+  </div>
+
+  <div class="dashboard-charts">
+    <div class="glass-card chart-card">
+      <h3>Quiz Score Distribution</h3>
+      <canvas id="quizChart"></canvas>
+    </div>
+    <div class="glass-card chart-card">
+      <h3>Trust Score Distribution</h3>
+      <canvas id="trustChart"></canvas>
+    </div>
+  </div>
+
+  <div class="glass-card table-card">
+    <h3><i class="fa-solid fa-envelope"></i> Contact Submissions</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Date</th></tr></thead>
+        <tbody>
+          {% for c in contacts %}
+          <tr>
+            <td>{{ c.id }}</td><td>{{ c.name }}</td><td>{{ c.email }}</td>
+            <td>{{ c.subject or '—' }}</td><td>{{ c.message }}</td><td>{{ c.created_at }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="6" class="empty-row">No contact submissions yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="glass-card table-card">
+    <h3><i class="fa-solid fa-circle-question"></i> Quiz Results</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Name</th><th>Score</th><th>Percentage</th><th>Date</th></tr></thead>
+        <tbody>
+          {% for q in quiz_results %}
+          <tr>
+            <td>{{ q.id }}</td><td>{{ q.name }}</td><td>{{ q.score }}/{{ q.total }}</td>
+            <td>{{ q.percentage }}%</td><td>{{ q.created_at }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="5" class="empty-row">No quiz attempts yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="glass-card table-card">
+    <h3><i class="fa-solid fa-gauge-high"></i> Trust Calculator Results</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Name</th><th>Score</th><th>Password</th><th>MFA</th><th>Backup</th><th>Privacy</th><th>Secure Browsing</th><th>Date</th></tr></thead>
+        <tbody>
+          {% for t in trust_scores %}
+          <tr>
+            <td>{{ t.id }}</td><td>{{ t.name }}</td><td>{{ t.score }}</td>
+            <td>{{ t.strong_password }}</td><td>{{ t.mfa_enabled }}</td><td>{{ t.data_backup }}</td>
+            <td>{{ t.privacy_awareness }}</td><td>{{ t.secure_browsing }}</td><td>{{ t.created_at }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="9" class="empty-row">No trust calculations yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const quizLabels = [{% for q in quiz_results %}"{{ q.name }}",{% endfor %}];
+const quizData = [{% for q in quiz_results %}{{ q.percentage }},{% endfor %}];
+const trustLabels = [{% for t in trust_scores %}"{{ t.name }}",{% endfor %}];
+const trustData = [{% for t in trust_scores %}{{ t.score }},{% endfor %}];
+
+const chartTextColor = getComputedStyle(document.body).getPropertyValue('--text-secondary').trim() || '#9fb3c8';
+const chartGrid = 'rgba(255,255,255,0.08)';
+
+new Chart(document.getElementById('quizChart'), {
+  type: 'bar',
+  data: {
+    labels: quizLabels.length ? quizLabels : ['No data'],
+    datasets: [{
+      label: 'Quiz Percentage',
+      data: quizData.length ? quizData : [0],
+      backgroundColor: 'rgba(56, 217, 255, 0.55)',
+      borderColor: '#38d9ff',
+      borderWidth: 1.5,
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { color: chartTextColor } } },
+    scales: {
+      x: { ticks: { color: chartTextColor }, grid: { color: chartGrid } },
+      y: { ticks: { color: chartTextColor }, grid: { color: chartGrid }, beginAtZero: true, max: 100 }
+    }
+  }
+});
+
+new Chart(document.getElementById('trustChart'), {
+  type: 'line',
+  data: {
+    labels: trustLabels.length ? trustLabels : ['No data'],
+    datasets: [{
+      label: 'Trust Score',
+      data: trustData.length ? trustData : [0],
+      backgroundColor: 'rgba(94, 92, 255, 0.25)',
+      borderColor: '#5e5cff',
+      borderWidth: 2,
+      tension: 0.35,
+      fill: true,
+      pointBackgroundColor: '#5e5cff',
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { color: chartTextColor } } },
+    scales: {
+      x: { ticks: { color: chartTextColor }, grid: { color: chartGrid } },
+      y: { ticks: { color: chartTextColor }, grid: { color: chartGrid }, beginAtZero: true, max: 100 }
+    }
+  }
+});
+</script>
+{% endblock %}

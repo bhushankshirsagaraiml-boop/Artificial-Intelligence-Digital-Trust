@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Quiz Result | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="section result-section reveal">
+  <div class="result-card glass-card level-{{ level }}">
+    <div class="result-icon">
+      {% if level == 'excellent' %}
+        <i class="fa-solid fa-trophy"></i>
+      {% elif level == 'good' %}
+        <i class="fa-solid fa-thumbs-up"></i>
+      {% else %}
+        <i class="fa-solid fa-book"></i>
+      {% endif %}
+    </div>
+    <h2>Great effort, {{ name }}!</h2>
+
+    <div class="score-ring-wrap">
+      <svg class="score-ring" viewBox="0 0 200 200">
+        <circle class="score-ring-bg" cx="100" cy="100" r="85"></circle>
+        <circle class="score-ring-fill" cx="100" cy="100" r="85" style="--percentage: {{ percentage }};"></circle>
+      </svg>
+      <div class="score-ring-text">
+        <span class="score-value">{{ percentage }}%</span>
+        <span class="score-sub">{{ score }} / {{ total }}</span>
+      </div>
+    </div>
+
+    <p class="result-message">{{ message }}</p>
+
+    <div class="hero-actions">
+      <a href="{{ url_for('quiz') }}" class="btn btn-outline"><i class="fa-solid fa-rotate-right"></i> Retake Quiz</a>
+      <a href="{{ url_for('calculator') }}" class="btn btn-primary">Try Trust Calculator <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

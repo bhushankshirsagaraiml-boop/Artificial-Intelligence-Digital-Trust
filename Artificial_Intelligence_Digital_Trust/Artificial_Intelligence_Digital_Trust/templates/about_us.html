@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}About Us | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="page-hero reveal">
+  <span class="tag">The People Behind This Project</span>
+  <h1>About Us</h1>
+  <p>This project was designed, built and documented as a full-stack demonstration of AI & Digital Trust concepts.</p>
+</section>
+
+<section class="section reveal">
+  <div class="team-grid">
+    {% for member in team %}
+    <div class="glass-card team-card reveal">
+      <div class="team-avatar"><i class="{{ member.icon }}"></i></div>
+      <h3>{{ member.name }}</h3>
+      <span class="team-role">{{ member.role }}</span>
+      <p>{{ member.bio }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section alt-bg reveal">
+  <div class="section-header">
+    <span class="tag">Project Details</span>
+    <h2>Built With</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="info-card reveal"><i class="fa-brands fa-python"></i><h3>Flask (Python)</h3><p>Backend routing, sessions, form validation and business logic.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-database"></i><h3>SQLite</h3><p>Lightweight relational database storing contacts, quiz and trust results.</p></div>
+    <div class="info-card reveal"><i class="fa-brands fa-html5"></i><h3>HTML5 / CSS3</h3><p>Semantic, responsive markup with a custom glassmorphism design system.</p></div>
+    <div class="info-card reveal"><i class="fa-brands fa-js"></i><h3>JavaScript</h3><p>Scroll animations, counters, accordions, theme toggling and form UX.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-chart-column"></i><h3>Chart.js</h3><p>Interactive data visualizations for the admin dashboard.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-icons"></i><h3>Font Awesome</h3><p>Consistent iconography across the entire interface.</p></div>
+  </div>
+</section>
+{% endblock %}

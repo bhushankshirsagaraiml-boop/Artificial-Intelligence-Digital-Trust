@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}AI Solutions | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="page-hero reveal">
+  <span class="tag">Responses</span>
+  <h1>AI Solutions</h1>
+  <p>The tools, principles and practices building a more trustworthy AI future.</p>
+</section>
+
+<section class="section reveal">
+  <div class="cards-grid">
+    <div class="solution-card reveal">
+      <div class="solution-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <h3>Explainable AI</h3>
+      <p>Techniques (like XAI) that make AI decision-making transparent and interpretable to humans, reducing the "black box" problem.</p>
+    </div>
+    <div class="solution-card reveal">
+      <div class="solution-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3>Secure AI</h3>
+      <p>Building AI systems resistant to adversarial attacks, tampering, and unauthorized access through robust security design.</p>
+    </div>
+    <div class="solution-card reveal">
+      <div class="solution-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+      <h3>Responsible AI</h3>
+      <p>A framework of principles ensuring AI is developed and deployed fairly, safely, and with accountability.</p>
+    </div>
+    <div class="solution-card reveal">
+      <div class="solution-icon"><i class="fa-solid fa-user-check"></i></div>
+      <h3>Human Oversight</h3>
+      <p>Keeping humans in the loop for critical decisions, ensuring AI augments rather than replaces human judgment.</p>
+    </div>
+    <div class="solution-card reveal">
+      <div class="solution-icon"><i class="fa-solid fa-user-shield"></i></div>
+      <h3>Privacy Protection</h3>
+      <p>Techniques like data anonymization, federated learning, and differential privacy to protect individual data.</p>
+    </div>
+    <div class="solution-card reveal">
+      <div class="solution-icon"><i class="fa-solid fa-key"></i></div>
+      <h3>Data Encryption</h3>
+      <p>Encrypting data at rest and in transit to prevent unauthorized access even if systems are breached.</p>
+    </div>
+    <div class="solution-card reveal">
+      <div class="solution-icon"><i class="fa-solid fa-gavel"></i></div>
+      <h3>Regulations</h3>
+      <p>Government and industry policies establishing legal standards for safe, fair, and transparent AI deployment.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg reveal">
+  <div class="cta-box small">
+    <h2>See how trustworthy your own digital habits are.</h2>
+    <p>Try the interactive AI Trust Calculator built for this project.</p>
+    <a href="{{ url_for('calculator') }}" class="btn btn-primary">Open Trust Calculator <i class="fa-solid fa-calculator"></i></a>
+  </div>
+</section>
+{% endblock %}

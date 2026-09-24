@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}AI & Digital Trust{% endblock %}</title>
+<meta name="description" content="A Second Year AI & ML mini project exploring Artificial Intelligence and Digital Trust.">
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- Loading animation -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <p>Initializing AI Systems<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+</div>
+
+<!-- Animated background particles -->
+<div class="ai-bg-grid"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="{{ url_for('index') }}" class="nav-logo">
+      <i class="fa-solid fa-brain"></i>
+      <span>AI<span class="accent">·</span>Trust</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.path == url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.path == url_for('about') }}">About AI</a></li>
+      <li><a href="{{ url_for('digital_trust') }}" class="{{ 'active' if request.path == url_for('digital_trust') }}">Digital Trust</a></li>
+      <li><a href="{{ url_for('challenges') }}" class="{{ 'active' if request.path == url_for('challenges') }}">Challenges</a></li>
+      <li><a href="{{ url_for('solutions') }}" class="{{ 'active' if request.path == url_for('solutions') }}">Solutions</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Tools <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('quiz') }}"><i class="fa-solid fa-circle-question"></i> AI Quiz</a></li>
+          <li><a href="{{ url_for('calculator') }}"><i class="fa-solid fa-calculator"></i> Trust Calculator</a></li>
+          <li><a href="{{ url_for('news') }}"><i class="fa-solid fa-newspaper"></i> AI News</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ url_for('about_us') }}" class="{{ 'active' if request.path == url_for('about_us') }}">About Us</a></li>
+      <li><a href="{{ url_for('contact') }}" class="{{ 'active' if request.path == url_for('contact') }}">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="siteSearch" placeholder="Search topics...">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- FLASH MESSAGES -->
+<div class="flash-container">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash-msg flash-{{ category }}">
+        <i class="fa-solid {{ 'fa-circle-check' if category == 'success' else 'fa-circle-exclamation' }}"></i>
+        <span>{{ message }}</span>
+        <button class="flash-close" onclick="this.parentElement.remove()">&times;</button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+</div>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <a href="{{ url_for('index') }}" class="nav-logo">
+        <i class="fa-solid fa-brain"></i>
+        <span>AI<span class="accent">·</span>Trust</span>
+      </a>
+      <p>A Second Year B.Tech (AI & ML) mini project exploring how Artificial Intelligence and Digital Trust intersect — covering ethics, privacy, security and responsible innovation.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="{{ url_for('about') }}">About AI</a></li>
+        <li><a href="{{ url_for('digital_trust') }}">Digital Trust</a></li>
+        <li><a href="{{ url_for('challenges') }}">AI Challenges</a></li>
+        <li><a href="{{ url_for('solutions') }}">AI Solutions</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="{{ url_for('quiz') }}">AI Quiz</a></li>
+        <li><a href="{{ url_for('calculator') }}">Trust Calculator</a></li>
+        <li><a href="{{ url_for('news') }}">AI News</a></li>
+        <li><a href="{{ url_for('login') }}">Admin Login</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Project</h4>
+      <ul>
+        <li><a href="{{ url_for('about_us') }}">About Us</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Artificial Intelligence & Digital Trust — B.Tech AI & ML Mini Project. Built with Flask, SQLite & Chart.js.</p>
+  </div>
+</footer>
+
+<button id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}Home | AI & Digital Trust{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+  </div>
+
+  <div class="hero-content reveal">
+    <span class="badge"><i class="fa-solid fa-graduation-cap"></i> B.Tech AI & ML · Second Year Mini Project</span>
+    <h1>Artificial Intelligence <span class="gradient-text">&</span><br> Digital Trust</h1>
+    <p class="hero-sub">Exploring how intelligent systems are reshaping the world — and why privacy, security, transparency and ethics must evolve alongside them.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('about') }}" class="btn btn-primary">Explore the Project <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="{{ url_for('quiz') }}" class="btn btn-outline"><i class="fa-solid fa-circle-question"></i> Take the AI Quiz</a>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal">
+    <div class="ai-orbit">
+      <div class="orbit-core"><i class="fa-solid fa-brain"></i></div>
+      <div class="orbit-ring ring1"><span class="orbit-node"><i class="fa-solid fa-lock"></i></span></div>
+      <div class="orbit-ring ring2"><span class="orbit-node"><i class="fa-solid fa-shield-halved"></i></span></div>
+      <div class="orbit-ring ring3"><span class="orbit-node"><i class="fa-solid fa-network-wired"></i></span></div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section reveal">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <i class="fa-solid fa-layer-group"></i>
+      <h3 class="counter" data-target="{{ stats.topics_covered }}">0</h3>
+      <p>Core Topics Covered</p>
+    </div>
+    <div class="stat-card">
+      <i class="fa-solid fa-circle-question"></i>
+      <h3 class="counter" data-target="{{ stats.quiz_questions }}">0</h3>
+      <p>AI Quiz Questions</p>
+    </div>
+    <div class="stat-card">
+      <i class="fa-solid fa-newspaper"></i>
+      <h3 class="counter" data-target="{{ stats.news_articles }}">0</h3>
+      <p>Curated AI News Items</p>
+    </div>
+    <div class="stat-card">
+      <i class="fa-solid fa-gauge-high"></i>
+      <h3 class="counter" data-target="{{ stats.trust_factors }}">0</h3>
+      <p>Digital Trust Factors</p>
+    </div>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="section reveal">
+  <div class="section-header">
+    <span class="tag">Project Introduction</span>
+    <h2>Why This Project Matters</h2>
+    <p>As Artificial Intelligence becomes deeply embedded in daily life — from recommendation systems to autonomous decision-making — the question of <strong>trust</strong> becomes central. This project examines both sides of that coin: the incredible capability of AI, and the responsibility required to deploy it safely, transparently and ethically.</p>
+  </div>
+
+  <div class="intro-grid">
+    <div class="glass-card reveal">
+      <i class="fa-solid fa-robot"></i>
+      <h3>Understand AI</h3>
+      <p>From Machine Learning to Generative AI — explore the core concepts driving modern intelligent systems.</p>
+      <a href="{{ url_for('about') }}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="glass-card reveal">
+      <i class="fa-solid fa-user-shield"></i>
+      <h3>Build Digital Trust</h3>
+      <p>Discover the pillars of trust: privacy, security, transparency, and ethical design.</p>
+      <a href="{{ url_for('digital_trust') }}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="glass-card reveal">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h3>Face the Challenges</h3>
+      <p>Deepfakes, bias, and misinformation — understand the risks AI introduces.</p>
+      <a href="{{ url_for('challenges') }}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="glass-card reveal">
+      <i class="fa-solid fa-lightbulb"></i>
+      <h3>Apply the Solutions</h3>
+      <p>Explainable AI, encryption and regulation — the tools building a trustworthy future.</p>
+      <a href="{{ url_for('solutions') }}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- AI Facts -->
+<section class="section facts-section reveal">
+  <div class="section-header">
+    <span class="tag">Did You Know?</span>
+    <h2>AI Facts</h2>
+  </div>
+  <div class="facts-slider">
+    <div class="fact-card"><i class="fa-solid fa-microchip"></i><p>The term "Artificial Intelligence" was first coined in <strong>1956</strong> at the Dartmouth Conference.</p></div>
+    <div class="fact-card"><i class="fa-solid fa-eye"></i><p>Explainable AI (XAI) helps convert "black box" models into decisions humans can actually understand.</p></div>
+    <div class="fact-card"><i class="fa-solid fa-shield-halved"></i><p>Federated Learning allows AI models to learn from data without that data ever leaving the user's device.</p></div>
+    <div class="fact-card"><i class="fa-solid fa-scale-balanced"></i><p>Many countries now require "algorithmic transparency" reports for high-risk AI systems.</p></div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="section reveal">
+  <div class="section-header">
+    <span class="tag">Evolution</span>
+    <h2>Journey of AI & Trust</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content"><span class="year">1956</span><h4>Birth of AI</h4><p>Artificial Intelligence emerges as a formal field of study.</p></div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content"><span class="year">1997</span><h4>Machine Beats Man</h4><p>Deep Blue defeats a world chess champion, proving AI's strategic power.</p></div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content"><span class="year">2012</span><h4>Deep Learning Boom</h4><p>Neural networks achieve breakthrough accuracy in image recognition.</p></div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content"><span class="year">2022</span><h4>Generative AI Era</h4><p>Large-scale generative models bring AI into everyday creative work.</p></div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content"><span class="year">2024+</span><h4>Age of Digital Trust</h4><p>Regulation, ethics and explainability become central to AI adoption.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials-section reveal">
+  <div class="section-header">
+    <span class="tag">Feedback</span>
+    <h2>What People Say</h2>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <i class="fa-solid fa-quote-left"></i>
+      <p>"A well-structured project that clearly explains a complex, timely topic."</p>
+      <div class="testimonial-author">— Faculty Reviewer</div>
+    </div>
+    <div class="testimonial-card">
+      <i class="fa-solid fa-quote-left"></i>
+      <p>"The Trust Calculator is a genuinely useful, interactive way to teach digital hygiene."</p>
+      <div class="testimonial-author">— Peer Student</div>
+    </div>
+    <div class="testimonial-card">
+      <i class="fa-solid fa-quote-left"></i>
+      <p>"Clean design, smooth animations, and solid backend — impressive for a mini project."</p>
+      <div class="testimonial-author">— Department Evaluator</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <div class="cta-box">
+    <h2>Ready to test your AI & Digital Trust knowledge?</h2>
+    <p>Take the interactive quiz or calculate your personal digital trust score in under 2 minutes.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('quiz') }}" class="btn btn-primary">Start the Quiz <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="{{ url_for('calculator') }}" class="btn btn-outline">Trust Calculator <i class="fa-solid fa-calculator"></i></a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

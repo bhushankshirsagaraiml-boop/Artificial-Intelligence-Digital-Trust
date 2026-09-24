@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}About AI | AI & Digital Trust{% endblock %}
+
+{% block content %}
+<section class="page-hero reveal">
+  <span class="tag">Foundations</span>
+  <h1>About Artificial Intelligence</h1>
+  <p>Understanding the core concepts that power today's intelligent systems.</p>
+</section>
+
+<section class="section reveal">
+  <div class="split-block">
+    <div class="split-text">
+      <h2>What is Artificial Intelligence?</h2>
+      <p>Artificial Intelligence (AI) is the branch of computer science focused on building systems that can perform tasks which normally require human intelligence — such as reasoning, learning, perception, and decision-making. Rather than following rigid, hand-coded rules, modern AI systems learn patterns from data and improve their performance over time.</p>
+      <p>AI today powers everything from voice assistants and recommendation engines to medical diagnosis tools and autonomous vehicles — making it one of the most transformative technologies of this century.</p>
+    </div>
+    <div class="split-visual"><i class="fa-solid fa-brain big-icon"></i></div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-header">
+    <span class="tag">Categories</span>
+    <h2>Types of AI</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="info-card reveal">
+      <i class="fa-solid fa-bullseye"></i>
+      <h3>Narrow AI</h3>
+      <p>Designed for a single, specific task — like spam filtering or facial recognition. This is the most common form of AI in use today.</p>
+    </div>
+    <div class="info-card reveal">
+      <i class="fa-solid fa-user-astronaut"></i>
+      <h3>General AI</h3>
+      <p>A theoretical form of AI with human-level cognitive ability across any intellectual task — still an active area of research.</p>
+    </div>
+    <div class="info-card reveal">
+      <i class="fa-solid fa-atom"></i>
+      <h3>Super AI</h3>
+      <p>A hypothetical future stage where AI surpasses human intelligence across every domain — a topic of ongoing ethical debate.</p>
+    </div>
+    <div class="info-card reveal">
+      <i class="fa-solid fa-sitemap"></i>
+      <h3>Reactive & Limited Memory AI</h3>
+      <p>Systems classified by capability: reactive machines respond to inputs directly, while limited-memory AI learns from recent historical data.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg reveal">
+  <div class="section-header">
+    <span class="tag">Core Pillars</span>
+    <h2>Machine Learning, Deep Learning & Generative AI</h2>
+  </div>
+  <div class="accordion" id="aiAccordion">
+    <div class="accordion-item reveal">
+      <button class="accordion-header"><i class="fa-solid fa-chart-line"></i> Machine Learning <i class="fa-solid fa-chevron-down toggle-icon"></i></button>
+      <div class="accordion-body">
+        <p>Machine Learning (ML) is a subset of AI where systems learn patterns directly from data instead of being explicitly programmed. It includes supervised learning (learning from labeled examples), unsupervised learning (finding hidden patterns), and reinforcement learning (learning through trial, error and reward).</p>
+      </div>
+    </div>
+    <div class="accordion-item reveal">
+      <button class="accordion-header"><i class="fa-solid fa-diagram-project"></i> Deep Learning <i class="fa-solid fa-chevron-down toggle-icon"></i></button>
+      <div class="accordion-body">
+        <p>Deep Learning is a specialized subset of ML that uses multi-layered artificial neural networks to automatically extract complex patterns from large volumes of data. It powers technologies like image recognition, speech-to-text, and natural language understanding.</p>
+      </div>
+    </div>
+    <div class="accordion-item reveal">
+      <button class="accordion-header"><i class="fa-solid fa-wand-magic-sparkles"></i> Generative AI <i class="fa-solid fa-chevron-down toggle-icon"></i></button>
+      <div class="accordion-body">
+        <p>Generative AI refers to models capable of creating new content — text, images, audio, code, or video — based on patterns learned from massive training datasets. It represents one of the fastest-growing and most publicly visible areas of AI innovation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-header">
+    <span class="tag">Real World</span>
+    <h2>Applications of AI</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="info-card reveal"><i class="fa-solid fa-heart-pulse"></i><h3>Healthcare</h3><p>Diagnostic assistance, medical imaging analysis, and personalized treatment recommendations.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-car"></i><h3>Autonomous Vehicles</h3><p>Real-time perception, path planning, and decision-making for self-driving systems.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-comments"></i><h3>Virtual Assistants</h3><p>Natural language understanding for voice assistants and customer support chatbots.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-magnifying-glass-chart"></i><h3>Finance</h3><p>Fraud detection, algorithmic trading, and automated credit risk assessment.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-industry"></i><h3>Manufacturing</h3><p>Predictive maintenance and quality control through computer vision.</p></div>
+    <div class="info-card reveal"><i class="fa-solid fa-book-open"></i><h3>Education</h3><p>Adaptive learning platforms that personalize content to each student's pace.</p></div>
+  </div>
+</section>
+
+{% endblock %}
